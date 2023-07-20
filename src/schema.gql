@@ -1,0 +1,71 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Vessel {
+  id: Int!
+  name: String!
+  ownerId: String!
+  naccsCode: String!
+}
+
+type Voyage {
+  id: Int!
+  vessel: Vessel!
+  vesselId: Int!
+  origin: String!
+  destination: String!
+  startTime: DateTime!
+  endTime: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  vessels(offset: Float!, limit: Float!): [Vessel!]!
+  vessel(id: Float!): Vessel!
+  voyages(offset: Float!, limit: Float!): [Voyage!]!
+  voyage(id: Int!): Voyage!
+}
+
+type Mutation {
+  createVessel(createVesselInput: CreateVesselInput!): Vessel!
+  updateVessel(updateVesselInput: UpdateVesselInput!): Vessel!
+  removeVessel(id: Float!): Vessel!
+  createVoyage(createVoyageInput: CreateVoyageInput!): Voyage!
+  updateVoyage(updateVoyageInput: UpdateVoyageInput!): Voyage!
+  removeVoyage(id: Int!): Voyage!
+}
+
+input CreateVesselInput {
+  name: String!
+  ownerId: String!
+  naccsCode: String!
+}
+
+input UpdateVesselInput {
+  name: String
+  ownerId: String
+  naccsCode: String
+  id: Int!
+}
+
+input CreateVoyageInput {
+  vesselId: Int!
+  origin: String!
+  destination: String!
+  startTime: DateTime!
+  endTime: DateTime!
+}
+
+input UpdateVoyageInput {
+  vesselId: Int
+  origin: String
+  destination: String
+  startTime: DateTime
+  endTime: DateTime
+  id: Int!
+}

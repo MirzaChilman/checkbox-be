@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  nest-api:
+    container_name: nest-api
+    volumes:
+      - ./prisma:/app/prisma
+      - ./src:/app/src
+    build: .
+    ports:
+      - '3000:3000'
+      - '5555:5555'
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=nestjs
+
+  redis:
+    image: redis:6
+    ports:
+      - '6379:6379'
+
+volumes:
+  postgres:
+    name: nest-db

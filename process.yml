@@ -1,0 +1,13 @@
+apps:
+  - name: prisma-generate
+    script: npx
+    args: prisma generate
+  - name: prisma-migrate
+    script: npx
+    args: prisma migrate dev
+  - name: prisma-studio
+    script: npx
+    args: prisma studio
+  - name: nestjs-app
+    script: npm
+    args: run start:dev
