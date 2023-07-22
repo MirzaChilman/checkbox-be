@@ -10,8 +10,6 @@ export class TaskResolver {
 
   @Mutation(() => Task)
   createTask(@Args('createTaskInput') createTaskInput: CreateTaskInput) {
-    console.log({ createTaskInput });
-
     return this.taskService.create(createTaskInput);
   }
 

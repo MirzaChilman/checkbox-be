@@ -33,8 +33,11 @@ export class TaskService {
     return `This action returns a #${id} task`;
   }
 
-  update(id: number, updateTaskInput: UpdateTaskInput) {
-    return `This action updates a #${id} task`;
+  async update(id: number, updateTaskInput: UpdateTaskInput) {
+    return await this.prisma.task.update({
+      where: { id },
+      data: { ...updateTaskInput, dueDate: new Date(updateTaskInput.dueDate) },
+    });
   }
 
   remove(id: number) {
