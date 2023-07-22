@@ -4,8 +4,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { PrismaService } from './prisma/prisma.service';
-import { VesselModule } from './vessel/vessel.module';
-import { VoyageModule } from './voyage/voyage.module';
+import { TaskModule } from './task/task.module';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -13,16 +12,15 @@ import { VoyageModule } from './voyage/voyage.module';
       playground: true,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    VesselModule,
-    VoyageModule,
-    RedisModule.forRoot({
-      readyLog: true,
-      config: {
-        host: 'redis',
-        port: 6379,
-      },
-      closeClient: true,
-    }),
+    TaskModule,
+    // RedisModule.forRoot({
+    //   readyLog: true,
+    //   config: {
+    //     host: 'redis',
+    //     port: 6379,
+    //   },
+    //   closeClient: true,
+    // }),
   ],
   providers: [PrismaService],
 })

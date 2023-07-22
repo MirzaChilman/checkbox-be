@@ -2,70 +2,31 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Vessel {
+type Task {
   id: Int!
   name: String!
-  ownerId: String!
-  naccsCode: String!
+  dueDate: String!
+  description: String!
 }
-
-type Voyage {
-  id: Int!
-  vessel: Vessel!
-  vesselId: Int!
-  origin: String!
-  destination: String!
-  startTime: DateTime!
-  endTime: DateTime!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Query {
-  vessels(offset: Float!, limit: Float!): [Vessel!]!
-  vessel(id: Float!): Vessel!
-  voyages(offset: Float!, limit: Float!): [Voyage!]!
-  voyage(id: Int!): Voyage!
+  tasks: [Task!]!
+  task(id: Int!): Task!
 }
 
 type Mutation {
-  createVessel(createVesselInput: CreateVesselInput!): Vessel!
-  updateVessel(updateVesselInput: UpdateVesselInput!): Vessel!
-  removeVessel(id: Float!): Vessel!
-  createVoyage(createVoyageInput: CreateVoyageInput!): Voyage!
-  updateVoyage(updateVoyageInput: UpdateVoyageInput!): Voyage!
-  removeVoyage(id: Int!): Voyage!
+  createTask(createTaskInput: CreateTaskInput!): Task!
+  updateTask(updateTaskInput: UpdateTaskInput!): Task!
+  removeTask(id: Int!): Task!
 }
 
-input CreateVesselInput {
-  name: String!
-  ownerId: String!
-  naccsCode: String!
+input CreateTaskInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
-input UpdateVesselInput {
-  name: String
-  ownerId: String
-  naccsCode: String
-  id: Int!
-}
-
-input CreateVoyageInput {
-  vesselId: Int!
-  origin: String!
-  destination: String!
-  startTime: DateTime!
-  endTime: DateTime!
-}
-
-input UpdateVoyageInput {
-  vesselId: Int
-  origin: String
-  destination: String
-  startTime: DateTime
-  endTime: DateTime
+input UpdateTaskInput {
+  """Example field (placeholder)"""
+  exampleField: Int
   id: Int!
 }
