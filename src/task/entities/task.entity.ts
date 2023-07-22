@@ -1,6 +1,7 @@
 // src/task.entity.ts
 
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Status } from '../types';
 
 @ObjectType()
 export class Task {
@@ -11,8 +12,14 @@ export class Task {
   name: string;
 
   @Field()
-  dueDate: string;
+  description: string;
 
   @Field()
-  description: string;
+  dueDate: Date;
+
+  @Field()
+  createDate: Date;
+
+  @Field((type) => Status) // Use the enum type for the field
+  status: Status;
 }
