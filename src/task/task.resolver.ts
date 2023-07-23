@@ -27,7 +27,9 @@ export class TaskResolver {
   }
 
   @Query(() => Task, { name: 'task' })
-  async findOne(@Args('id', { type: () => Int }) id: number) {}
+  async findOne(@Args('id', { type: () => Int }) id: number) {
+    return this.taskLoader.byId.load(id);
+  }
 
   @Mutation(() => Task)
   updateTask(@Args('updateTaskInput') updateTaskInput: UpdateTaskInput) {
