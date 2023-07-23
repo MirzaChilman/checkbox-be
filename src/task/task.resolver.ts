@@ -4,7 +4,6 @@ import { Task } from './entities/task.entity';
 import { CreateTaskInput } from './dto/create-task.input';
 import { UpdateTaskInput } from './dto/update-task.input';
 import { TaskLoader } from './task.loader';
-import { HttpException, HttpStatus } from '@nestjs/common';
 
 @Resolver(() => Task)
 export class TaskResolver {
@@ -20,13 +19,12 @@ export class TaskResolver {
 
   @Query(() => [Task], { name: 'tasks' })
   async findAll() {
-    const tasks = await this.taskService.findAll();
-    return Promise.all(tasks.map((task) => this.taskLoader.byId.load(task.id)));
+    return await this.taskService.findAll();
   }
 
   @Query(() => Task, { name: 'task' })
   async findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.taskLoader.byId.load(id);
+    return this.taskService.findOne(id);
   }
 
   @Mutation(() => Task)
