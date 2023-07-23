@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 const prisma = new PrismaClient();
 
 async function main() {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 1000; i++) {
     await prisma.task.create({
       data: {
         name: faker.person.fullName(),
