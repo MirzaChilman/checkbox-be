@@ -12,14 +12,6 @@ import { TaskModule } from './task/task.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     TaskModule,
-    // RedisModule.forRoot({
-    //   readyLog: true,
-    //   config: {
-    //     host: 'redis',
-    //     port: 6379,
-    //   },
-    //   closeClient: true,
-    // }),
   ],
   providers: [PrismaService],
 })
