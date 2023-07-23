@@ -3,10 +3,14 @@ import { TaskService } from './task.service';
 import { Task } from './entities/task.entity';
 import { CreateTaskInput } from './dto/create-task.input';
 import { UpdateTaskInput } from './dto/update-task.input';
+import { TaskLoader } from './task.loader';
 
 @Resolver(() => Task)
 export class TaskResolver {
-  constructor(private readonly taskService: TaskService) {}
+  constructor(
+    private readonly taskService: TaskService,
+    private readonly taskLoader: TaskLoader,
+  ) {}
 
   @Mutation(() => Task)
   createTask(@Args('createTaskInput') createTaskInput: CreateTaskInput) {
@@ -15,12 +19,13 @@ export class TaskResolver {
 
   @Query(() => [Task], { name: 'tasks' })
   async findAll() {
-    return await this.taskService.findAll();
+    const tasks = await this.taskService.findAll();
+    return Promise.all(tasks.map((task) => this.taskLoader.byId.load(task.id)));
   }
 
   @Query(() => Task, { name: 'task' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.taskService.findOne(id);
+  async findOne(@Args('id', { type: () => Int }) id: number) {
+    return this.taskLoader.byId.load(id);
   }
 
   @Mutation(() => Task)

@@ -9,11 +9,13 @@ datasource db {
 
 model Task {
   id          Int        @id @default(autoincrement())
-  name        String
-  description String
-  dueDate     DateTime
-  createDate  DateTime
+  name        String     @db.VarChar(100)
+  description String     @db.VarChar(500)
+  dueDate     DateTime   
+  createDate  DateTime   
   status      TaskStatus
+
+  @@index(fields: [dueDate, createDate, name])
 }
 
 enum TaskStatus {
