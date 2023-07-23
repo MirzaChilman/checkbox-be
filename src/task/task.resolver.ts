@@ -4,6 +4,7 @@ import { Task } from './entities/task.entity';
 import { CreateTaskInput } from './dto/create-task.input';
 import { UpdateTaskInput } from './dto/update-task.input';
 import { TaskLoader } from './task.loader';
+import { HttpException, HttpStatus } from '@nestjs/common';
 
 @Resolver(() => Task)
 export class TaskResolver {
@@ -14,6 +15,8 @@ export class TaskResolver {
 
   @Mutation(() => Task)
   createTask(@Args('createTaskInput') createTaskInput: CreateTaskInput) {
+    console.log('999999999');
+
     return this.taskService.create(createTaskInput);
   }
 
@@ -24,9 +27,7 @@ export class TaskResolver {
   }
 
   @Query(() => Task, { name: 'task' })
-  async findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.taskLoader.byId.load(id);
-  }
+  async findOne(@Args('id', { type: () => Int }) id: number) {}
 
   @Mutation(() => Task)
   updateTask(@Args('updateTaskInput') updateTaskInput: UpdateTaskInput) {
