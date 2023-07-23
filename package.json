@@ -1,5 +1,5 @@
 {
-  "name": "shippio-api",
+  "name": "checkbox-be",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
+    "setup": "npx prisma migrate dev && npx prisma generate && npm run seed",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "pm2:dev": "pm2 start ./dev.yml --watch",

@@ -19,7 +19,7 @@ COPY src ./src
 COPY process.yml ./process.yml
 
 # Expose the ports for the NestJS app and Prisma Studio
-EXPOSE 3000
+EXPOSE 3001
 EXPOSE 5555
 
 # Start both NestJS app and Prisma Studio using PM2

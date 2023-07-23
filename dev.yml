@@ -1,7 +1,0 @@
-apps:
-  - name: prisma-studio
-    script: npx
-    args: prisma studio
-  - name: nestjs-app
-    script: npm
-    args: run start:dev
