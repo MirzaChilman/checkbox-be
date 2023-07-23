@@ -4,7 +4,7 @@ This is a sample Checkbox Service built using **NestJS** and **GraphQL** with a 
 
 This is a project built with **NestJS** and **PostgreSQL**, using **Prisma** ORM and **GraphQL** with a code-first approach.
 
-Note: please read [EVALUATING.md](EVALUATING.md) for explaining of the decision makin
+Note: please go to this [link](https://giant-heaven-ea6.notion.site/Checkbox-9c503033aba845a6909e0b9a5dbc418b?pvs=4) for detailed improvements
 
 ## Tech Stack
 
